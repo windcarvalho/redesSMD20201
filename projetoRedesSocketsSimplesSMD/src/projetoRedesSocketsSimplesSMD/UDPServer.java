@@ -2,6 +2,7 @@ package projetoRedesSocketsSimplesSMD;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 public class UDPServer {
@@ -10,9 +11,13 @@ public class UDPServer {
 		
 		int porta= 8787;
 		try {
+			System.out.println ("BOA NOITE, SOU O SERVIDOR UDP");
+			
+			
 			DatagramSocket servidorUDP= new DatagramSocket(porta);
 			System.out.println ("Servidor Funcionando na porta:"+porta);
 			
+			int i = 0;
 			while (true) {
 				
 				byte[] receiveData = new byte [1024];
@@ -20,14 +25,16 @@ public class UDPServer {
 				DatagramPacket pacoteRecebido= 
 						new DatagramPacket(receiveData,receiveData.length);
 				
-				System.out.println("Esperando Pacote");
+				i++;
+				System.out.println("Esperando Pacote de número:"+i);
 				servidorUDP.receive(pacoteRecebido); //Servidor vai bloqueado
 				
 				
 				String sentence = new String (pacoteRecebido.getData());
 		    	  
 		    	  System.out.println ("Recebi:"+sentence);
-				
+		    	  
+		    		
 				
 			}
 		
