@@ -33,6 +33,17 @@ public class UDPClient {
 			
 			System.out.println ("Pacote Enviado");
 			
+			
+			byte[] receiveData = new byte[1024];
+			
+			DatagramPacket pac= new DatagramPacket(receiveData, 
+					receiveData.length);
+			System.out.println ("Esperando uma resposta");
+			clienteUDP.receive(pac);
+			
+			String resposta = new String (receiveData);
+			System.out.println ("Resposta: "+resposta);
+			
 			clienteUDP.close();
 			
 					

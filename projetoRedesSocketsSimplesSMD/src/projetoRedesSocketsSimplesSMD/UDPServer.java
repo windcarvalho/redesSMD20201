@@ -32,9 +32,23 @@ public class UDPServer {
 				
 				String sentence = new String (pacoteRecebido.getData());
 		    	  
-		    	  System.out.println ("Recebi:"+sentence);
+		    	System.out.println ("Recebi:"+sentence);
 		    	  
-		    		
+		    	byte[] sendData = new byte[1024];
+		    	
+		    	sendData = "Boa noite meu patrão".getBytes();
+		    	
+		    	InetAddress enderDestino= pacoteRecebido.getAddress();
+		    	int portaDoCliente= pacoteRecebido.getPort();
+		    	
+		    	DatagramPacket pacSaida= 
+		    			new DatagramPacket (sendData,sendData.length,
+		    		enderDestino, portaDoCliente);
+		    	
+		    	System.out.println ("Enviando: "+new String (sendData));
+		    	
+		    	servidorUDP.send(pacSaida);
+		    	
 				
 			}
 		
